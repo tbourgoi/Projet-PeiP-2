@@ -27,12 +27,12 @@ void setup() {
   Serial.begin(9660);
   Servo_droit.attach(MOTEUR_D);  
   Servo_gauche.attach(MOTEUR_G);
-pinMode(IR_DROIT, INPUT);
-pinMode(IR_GAUCHE, INPUT);
-pinMode(LEDD_PIN_G, OUTPUT);
-digitalWrite(LEDD_PIN_G, LOW);
-pinMode(LEDD_PIN_D, OUTPUT);
-digitalWrite(LEDD_PIN_D, LOW);
+  pinMode(IR_DROIT, INPUT);
+  pinMode(IR_GAUCHE, INPUT);
+  pinMode(LEDD_PIN_G, OUTPUT);
+  digitalWrite(LEDD_PIN_G, LOW);
+  pinMode(LEDD_PIN_D, OUTPUT);
+  digitalWrite(LEDD_PIN_D, LOW);
 
 }
 
