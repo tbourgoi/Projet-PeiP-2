@@ -12,27 +12,31 @@ void setup() {
     Serial.begin(9660);
     Serial.print("initialisé");
     leve.attach(10);
-    leve.write(pointHaut);
-	  pinMode(2, INPUT);
+    leve.write(pointBas);
+	  pinMode(6, INPUT);
 	
 }
 
 void loop() {
- 
-  for (int position = pointHaut ; position <= pointBas && digitalRead(2) == LOW ; position++) {
+  /*leve.write(pointBas);
+  delay(1000);*/
+  
+  for (int position = pointHaut ; position <= pointBas && digitalRead(6) == LOW ; position++) {
     leve.write(position);
     delay(latence);
   }
   
   // Fait bouger le bras de 180° à 10°
-  for (int position = pointBas; position >= pointHaut && digitalRead(2) == LOW; position--) {
+  for (int position = pointBas; position >= pointHaut && digitalRead(6) == LOW; position--) {
     leve.write(position);
     delay(latence);
   }
 
-  if (digitalRead(2) == HIGH){
+  if (digitalRead(6) == HIGH){
 	  position = pointBas;
 	  leve.write(pointBas);
+    //Serial.println("bouton appuyé");
+    //delay(1000);
   }
 
 }
