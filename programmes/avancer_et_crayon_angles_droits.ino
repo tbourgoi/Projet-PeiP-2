@@ -1,0 +1,140 @@
+#include <Servo.h>
+
+#define MOTEUR_G 12
+#define MOTEUR_D 13
+#define T1_1 1700//durée T1 sens horaire
+#define T1_2 1300//durée T2 sens trigonométrique
+#define T1_3 1500//durée T3 sens arret
+
+#define IR_DROIT 1
+#define IR_GAUCHE 0
+
+#define DISTANCE 11 // avant 10
+
+int POINT_HAUT = 25;
+int POINT_BAS = 100;
+int position;
+int LATENCE = 10;
+
+Servo Servo_droit;
+Servo Servo_gauche;
+Servo leve;
+
+void setup() {
+
+  analogReference(DEFAULT);
+  Serial.begin(9660);
+  Servo_droit.attach(MOTEUR_D);  
+  Servo_gauche.attach(MOTEUR_G);
+  pinMode(IR_DROIT, INPUT);
+  pinMode(8,INPUT);
+  pinMode(IR_GAUCHE, INPUT);
+  
+  leve.attach(10);
+  leve.write(POINT_BAS);
+  pinMode(2, INPUT);
+
+}
+
+void loop() {
+
+  int infra_droit=analogRead(IR_DROIT);
+  int volt_droit=map(infra_droit, 0, 1023, 0, 5000);
+  int cm_droit=(21.61/(volt_droit-0.1696))*1000;
+
+  int infra_gauche=analogRead(IR_GAUCHE);
+  int volt_gauche=map(infra_gauche, 0, 1023, 0, 5000);
+  int cm_gauche=(21.61/(volt_gauche-0.1696))*1000;
+  
+  /*if (digitalRead(2) == HIGH){
+    position = POINT_BAS;
+    arret();
+    leve.write(POINT_BAS);
+  }*/
+  
+    if(cm_droit<=DISTANCE)
+    {
+      AngleDroitGauche();
+    } 
+    else 
+    {  
+      if(cm_gauche<=DISTANCE)
+      {
+        AngleDroitDroite();
+      }
+      else{
+        leve.write(POINT_BAS);
+        Avancer(1000);
+      }
+    }
+  
+}
+
+
+void delai_avec_ir(int duree)
+{
+  /*Fonction similaire à la fonction delay, mais qui continue de détetcter les objets*/
+  int t_0 = millis();
+  while(millis()-t_0 < duree)
+  {
+//    detection_infrarouge(6);
+  }
+}
+
+void Avancer (int duree_deplacement) 
+{ 
+  Servo_droit.writeMicroseconds(T1_2); 
+  Servo_gauche.writeMicroseconds(T1_1); 
+  delay (duree_deplacement); 
+}
+
+void Reculer(int duree_deplacement)
+{
+  Servo_droit.writeMicroseconds(T1_1);
+  Servo_gauche.writeMicroseconds(T1_2);
+  delay (duree_deplacement);
+}  
+
+void arret(void) 
+{   
+//  Servo_droit.detach();   
+//  Servo_gauche.detach(); 
+  Servo_droit.writeMicroseconds(T1_3);   
+  Servo_gauche.writeMicroseconds(T1_3);   
+
+}
+
+
+void Pivote_droit(int duree_deplacement) 
+{   
+  Servo_droit.writeMicroseconds(T1_3);   
+  Servo_gauche.writeMicroseconds(T1_1);   
+  delay(duree_deplacement); 
+} 
+ 
+void Pivote_gauche(int duree_deplacement) 
+{   
+  Servo_droit.writeMicroseconds(T1_2);   
+  Servo_gauche.writeMicroseconds(T1_3);   
+  delay(duree_deplacement); 
+} 
+
+void AngleDroitDroite(){
+  leve.write(POINT_HAUT); // pour lever le crayon
+  delay(10);
+  Reculer(1200);
+  Pivote_droit(1100);
+  Avancer(400);
+  leve.write(POINT_BAS);
+  delay(10);
+}
+
+void AngleDroitGauche(){
+  leve.write(POINT_HAUT); // pour lever le crayon
+  delay(10);
+  Reculer(1200);
+  Pivote_gauche(1100);
+  Avancer(400);
+  leve.write(POINT_BAS);
+  delay(10);
+}

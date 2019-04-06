@@ -8,8 +8,6 @@
 
 #define IR_DROIT 1
 #define IR_GAUCHE 0
-#define LEDD_PIN_G 11
-//#define LEDD_PIN_D 10
 
 #define DISTANCE 11 // avant 10
 
@@ -23,7 +21,7 @@ Servo Servo_gauche;
 Servo leve;
 
 void setup() {
-  // put your setup code here, to run once:
+
   analogReference(DEFAULT);
   Serial.begin(9660);
   Servo_droit.attach(MOTEUR_D);  
@@ -31,11 +29,7 @@ void setup() {
   pinMode(IR_DROIT, INPUT);
   pinMode(8,INPUT);
   pinMode(IR_GAUCHE, INPUT);
-  //pinMode(LEDD_PIN_G, OUTPUT);
-  //digitalWrite(LEDD_PIN_G, LOW);
-  //pinMode(LEDD_PIN_D, OUTPUT);
-  //digitalWrite(LEDD_PIN_D, LOW);
-
+  
   leve.attach(10);
   leve.write(POINT_BAS);
   pinMode(2, INPUT);
@@ -43,49 +37,37 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
 
   int infra_droit=analogRead(IR_DROIT);
   int volt_droit=map(infra_droit, 0, 1023, 0, 5000);
   int cm_droit=(21.61/(volt_droit-0.1696))*1000;
 
-  Serial.println(cm_droit);
-  
   int infra_gauche=analogRead(IR_GAUCHE);
   int volt_gauche=map(infra_gauche, 0, 1023, 0, 5000);
   int cm_gauche=(21.61/(volt_gauche-0.1696))*1000;
   
-  Serial.println(cm_gauche);
-
   if (digitalRead(2) == HIGH){
     position = POINT_BAS;
+    arret();
     leve.write(POINT_BAS);
   }
   
-  if (digitalRead(8) == HIGH){
-    leve.write(POINT_HAUT);
-  }
-  
-  if (digitalRead(2) == LOW){
-    if(cm_droit<=DISTANCE && digitalRead(2) == LOW)
+  else{
+    if(cm_droit<=DISTANCE)
     {
-      //digitalWrite(LEDD_PIN_D, HIGH);
       leve.write(POINT_HAUT); // pour lever le crayon
       delay(10);
       Reculer(400); // avant Reculer(300);
-      //digitalWrite(LEDD_PIN_D, LOW);
       Pivote_gauche(1100); // avant Pivote_gauche (1000);
       leve.write(POINT_BAS); // pour baisser le crayon
     } 
     else 
     {  
-      if(cm_gauche<=DISTANCE && digitalRead(2) == LOW)
+      if(cm_gauche<=DISTANCE)
       {
-        //digitalWrite(LEDD_PIN_G, HIGH);
         leve.write(POINT_HAUT); // pour lever le crayon
         //delay(10);
         Reculer(400); // avant Reculer(300);
-        //(LEDD_PIN_G, LOW);
         Pivote_droit(1100); // avant Pivote_droit (1000);
         leve.write(POINT_BAS); // pour baisser le crayon
       }
@@ -110,9 +92,9 @@ void delai_avec_ir(int duree)
 
 void Avancer (int duree_deplacement) 
 { 
-Servo_droit.writeMicroseconds(T1_2); 
-Servo_gauche.writeMicroseconds(T1_1); 
-delay (duree_deplacement); 
+  Servo_droit.writeMicroseconds(T1_2); 
+  Servo_gauche.writeMicroseconds(T1_1); 
+  delay (duree_deplacement); 
 }
 
 void Reculer(int duree_deplacement)
@@ -129,7 +111,7 @@ void arret(void)
   Servo_droit.writeMicroseconds(T1_3);   
   Servo_gauche.writeMicroseconds(T1_3);   
 
-} 
+}
 
 
 void Pivote_droit(int duree_deplacement) 

@@ -1,0 +1,4 @@
+{
+    "sketch": "programmes\\avancer_et_crayon\\avancer_et_crayon.ino",
+    "board": "arduino:avr:uno"
+}

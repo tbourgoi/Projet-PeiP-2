@@ -1,0 +1,55 @@
+\documentclass[12,a4paper]{book}
+\usepackage[french]{babel}
+\usepackage{yhmath}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{fourier-orns}
+\usepackage{wrapfig}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{array, ltablex}
+\usepackage{enumitem}
+\usepackage{makecell, etoolbox}
+\usepackage{esvect}
+
+\setcellgapes{\itemsep}
+\AtBeginEnvironment{tabularx}{\setcellgapes[b]{\itemsep}\makegapedcells}
+\AtEndEnvironment{tabularx}{\vskip\dimexpr-\itemsep-\topsep\relax}
+\newcolumntype{I}{@{\hskip\leftmargin} >{\llap{\textbullet\hskip\labelsep}}X}
+
+
+
+\makeindex
+
+\begin{document}
+\title{Démo Algèbre}
+\author{BOURGOIN Thomas}
+\tableofcontents
+\listoffigures
+
+\begin{minipage}{0.55\linewidth}
+	\begin{figure}
+    \center
+    \includegraphics[scale=0.6]{images/logo_Polytech_Tours_RVB_3cm_300dpi.jpg}
+    \caption{}
+    \end{figure}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+texte
+\end{minipage}
+
+
+\begin{figure}
+    \begin{minipage}[t]{6cm}
+        \centering
+        \includegraphics[scale=0.6]{images/logo_Polytech_Tours_RVB_3cm_300dpi.jpg}
+        \caption{Un panda de 1 an}
+    \end{minipage}
+    \begin{minipage}[t]{6cm}
+        \centering
+        \includegraphics[scale=0.6]{images/logo_Polytech_Tours_RVB_3cm_300dpi.jpg}
+        \caption{Un autre panda}
+    \end{minipage}
+\end{figure}
+
+\end{document} 
