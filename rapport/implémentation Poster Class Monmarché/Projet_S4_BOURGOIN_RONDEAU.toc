@@ -1,0 +1,31 @@
+\babel@toc {french}{}
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Introduction}{1}{chapter*.3}% 
+\contentsline {chapter}{\numberline {1}Projet et t\IeC {\^a}ches}{2}{chapter.1}% 
+\contentsline {section}{\numberline {1.1}\IeC {\'E}volution des robots}{2}{section.1.1}% 
+\contentsline {section}{\numberline {1.2}Objectifs de cette ann\IeC {\'e}e}{4}{section.1.2}% 
+\contentsline {chapter}{\numberline {2}Pr\IeC {\'e}sentation des interfaces et des outils de travail}{5}{chapter.2}% 
+\contentsline {section}{\numberline {2.1}Les cartes \IeC {\'e}lectroniques}{5}{section.2.1}% 
+\contentsline {section}{\numberline {2.2}Les servomoteurs}{6}{section.2.2}% 
+\contentsline {subsection}{\numberline {2.2.1}Les servomoteurs des roues}{6}{subsection.2.2.1}% 
+\contentsline {subsection}{\numberline {2.2.2}Le servomoteur pour lever le crayon}{7}{subsection.2.2.2}% 
+\contentsline {section}{\numberline {2.3}Les capteurs infrarouges}{7}{section.2.3}% 
+\contentsline {chapter}{\numberline {3}Le m\IeC {\'e}canisme pour lever le crayon}{9}{chapter.3}% 
+\contentsline {section}{\numberline {3.1}Id\IeC {\'e}e de d\IeC {\'e}part}{9}{section.3.1}% 
+\contentsline {section}{\numberline {3.2}Mod\IeC {\'e}lisation sur Catia}{10}{section.3.2}% 
+\contentsline {section}{\numberline {3.3}Prototypes}{12}{section.3.3}% 
+\contentsline {chapter}{\numberline {4}Pr\IeC {\'e}sentation des algorithmes }{15}{chapter.4}% 
+\contentsline {section}{\numberline {4.1}Programmation pour lever le crayon}{15}{section.4.1}% 
+\contentsline {section}{\numberline {4.2}Programmation pour les toiles}{15}{section.4.2}% 
+\contentsline {section}{\numberline {4.3}Programmation pour les formes et lettres de l'alphabet}{15}{section.4.3}% 
+\contentsline {chapter}{\numberline {5}Probl\IeC {\`e}mes rencontr\IeC {\'e}s}{16}{chapter.5}% 
+\contentsline {section}{\numberline {5.1}L'alimentation}{16}{section.5.1}% 
+\contentsline {section}{\numberline {5.2}Interf\IeC {\'e}rence entre les pins}{16}{section.5.2}% 
+\contentsline {chapter}{\hbox to\@tempdima {\hfil }Conclusion}{18}{chapter*.4}% 
+\contentsline {part}{\hbox to\@tempdima {\hfil }Annexes}{19}{chapter*.5}% 
+\contentsline {chapter}{\numberline {A}Liens utiles}{20}{appendix.A}% 
+\contentsline {chapter}{\numberline {B}Nos r\IeC {\'e}alisations}{21}{appendix.B}% 
+\contentsline {chapter}{\numberline {C}Fiche de suivi de projet PeiP}{22}{appendix.C}% 
+\contentsline {paragraph}{R\IeC {\'e}sum\IeC {\'e} :}{30}{section*.6}% 
+\contentsline {paragraph}{Mots cl\IeC {\'e} :}{30}{section*.7}% 
+\contentsline {paragraph}{Abstract :}{30}{section*.8}% 
+\contentsline {paragraph}{Keywords :}{30}{section*.9}% 

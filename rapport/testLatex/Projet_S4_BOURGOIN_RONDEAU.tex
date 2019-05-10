@@ -1,0 +1,473 @@
+%fichier : ExempleProjet.tex
+%Date : 14/03/2005
+%Version : 2.00
+%Modif : 07/09/2007
+
+\documentclass{EPUProjetPeiP}
+\usepackage{etoolbox}
+\usepackage{poster}
+\usepackage{constants}
+\usepackage{firstlastpage}
+
+\student{Thomas}{Bourgoin}{thomas.bourgoin@etu.univ-tours.fr}
+%\student{juliette}{rondeau}{juliette.rondeau@etu.univ-tours.fr}
+\academicsupervisor[di]{Nicolas}{Monmarché}{mail}
+\posterblock{Premier prototype}{du texte random pour faire genre c'est un paragraphe d'explication mais en fait s'en ait pas un c'est juste du blabla pourri pour remplir la feuille mais au moins c'est assumé pas comme la philo...}{image/maquette_lego1.JPG}{maquette avec des Lego}
+\posterblock{Modélisation Catia}{du texte random pour faire genre c'est un paragraphe d'explication mais en fait s'en ait pas un c'est juste du blabla pourri pour remplir la feuille mais au moins c'est assumé pas comme la philo...}{image/brasCatia.jpeg}{bras du mécanisme sur Catia V5 R21}
+
+\posterblock{Modèle final}{du texte random pour faire genre c'est un paragraphe d'explication mais en fait s'en ait pas un c'est juste du blabla pourri pour remplir la feuille mais au moins c'est assumé pas comme la philo...}{image/modele_final_leve.JPG}{Robot assemblé avec le modèle final}
+
+\makeindex
+%\posterblock{qpfoj,qdkjzsdjqpo,m<ozdkâ	^,APODJ}
+%remplir les lignes suivantes avec les informations vous concernant :
+\title[DI45]{DI45 Robotique Collective Artistique}
+
+\projet{S4}%mettre 2 ou 4 selon le semestre du projet
+
+\author{Juliette Rondeau\\ %Attention : toujours écrire d'abord le prénom puis le nom (ne pas mettre tout le nom en majuscules)
+\noindent[\url{juliette.rondeau@etu.univ-tours.fr}]\\
+Thomas Bourgoin\\ %Attention : toujours écrire d'abord le prénom puis le nom (ne pas mettre tout le nom en majuscules)
+\noindent[\url{thomas.bourgoin@etu.univ-tours.fr}]}
+
+\encadrant{Nicolas Monmarché\\ %
+\noindent[\url{nicolas.monmarche@univ-tours.fr}]\\~\\
+Polytech Tours\\
+Département DI\\~ %
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\pagenumbering{roman}
+\setcounter{page}{0}
+
+{
+%on réduit momentanément l'écart entre paragraphes pour ne pas trop aérer la table des matières
+\setlength{\parskip}{0em}
+
+\tableofcontents
+
+\listoffigures
+
+%\listoftables
+%rq1 : si vous n'avez pratiquement pas de tables, laissez la ligne précédente en commentaire
+}
+
+
+\start
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter*{Introduction}
+%le 2 lignes suivantes permettent d'ajouter l'introduction à la table des matières
+%et d'afficher "Introduction en haut des pages"
+\addcontentsline{toc}{chapter}{\numberline{}Introduction}
+\markboth{\hspace{0.5cm}Introduction}{}
+
+La robotique est au coeur de l’actualité et ses domaines de compétences s’étendent de plus en plus. En effet, les robots sont aujourd’hui utilisés pour des tâches diverses et variées dans les secteurs industriels, médicaux, ou encore dans le secteur artistique qui est celui auquel nous nous sommes intéressés pour ce projet.
+	
+La robotique collective artistique réunit des compétences aussi bien en informatique qu’en électronique ou encore en mécanique ce qui rend ce projet pluridisciplinaire. Le principe du projet est de faire fonctionner une colonie de robots dessinant sur une toile tout en interagissant entre eux mais aussi avec leur environnement. Ce projet repose sur le travail d’étudiants des années précédentes qui ont mis en place différents éléments du robot. Notre but cette année est d’ajouter un mécanisme permettant de faire le crayon au robot.
+
+Dans ce rapport, nous commencerons par expliquer plus en détails le travail réalisé par les anciens groupes sur ce projet ainsi que les objectifs de cette année. Nous verrons aussi les outils de travail dont nous disposions. Ensuite, nous présenterons notre démarche pour la mise en place du mécanisme pour lever le crayon. Enfin, nous vous montrerons la programmation de nos robots.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Projet et tâches}
+
+\section{Évolution des robots}
+
+Le projet robotique collective artistique existe depuis plusieurs années et les groupes précédents ont amélioré au fil du temps les robots. 
+
+Le premier robot dessinateur était équipé de capteurs de contacts appelés “moustaches” pour détecter les collisions entre les robots ou tout autre obstacle de son environnement. De plus, le crayon était attaché au robot par de simples élastiques. 
+
+Cette première disposition fut confrontée à plusieurs problèmes: la fixation du crayon n’était pas très stable ce qui entraînait des mouvements involontaires du crayon. De plus, il fallait qu’il y ait contact entre les robots pour qu’ils s’évitent ce qui provoquait parfois des accrochages entre les robots. C’est pourquoi les robots se sont vus équipés de capteur infrarouges afin de remédier à ce second problème. 
+\\
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{8cm}
+    \centering
+    \includegraphics[scale=1.1]{image/robot_version1.jpg}
+    \caption{Version de 2014}
+\end{minipage}
+\begin{minipage}[t]{8cm}
+\centering
+    \includegraphics[scale=0.9]{image/robot_version1_premiers_capteurs_infrarouges.JPG}
+    \caption{Premiers capteurs infrarouges}
+    \end{minipage}
+\end{figure}
+
+Par la suite, une coque intégrale a été modélisée par les étudiants GE2I qui permettait d’y intégrer à la fois le feutre et de nouveaux capteurs infrarouges plus précis. Cependant, cette coque s’est avérée assez lourde et encombrante ce qui empêchait le robot d’avancer lorsque le niveau des piles était bas. C’est pourquoi ce modèle de coque a été réduit en ne gardant que la partie avant de l’ancienne coque. 
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{8cm}
+    \centering
+    \includegraphics[scale=1.2]{image/robot_version2.jpg}
+    \caption{Première version de la coque}
+\end{minipage}
+\begin{minipage}[t]{8cm}
+\centering
+    \includegraphics[scale=1.1]{image/robot_version3.jpg}
+    \caption{Deuxième version de la coque}
+    \end{minipage}
+\end{figure}
+
+
+Enfin, la dernière amélioration datant de l’année dernière fut d’une part d’agrandir les encoches réservées aux capteurs infrarouges afin d’avoir un angle de vue plus grand et d’éviter les détections des capteurs du bord de la coque. D’autre part, un emplacement a été intégré en dessous de la coque afin de pouvoir y intégrer le capteur de couleur. De plus, la coque a aussi été allégée.
+\\
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=0.9]{image/robot_version4_coques.JPG}
+\caption{Troisième version de la coque}
+\end{center}
+\end{figure}
+
+\newpage
+\section{Objectifs de cette année}
+
+Cette année, nous allons tout comme les années précédentes continuer à améliorer le robot avec comme objectif principal la mise en place d’un mécanisme pour lever le crayon. En effet, jusqu’à présent, le crayon était statique ce qui entraînait des tracés involontaires lors des rotations. De plus, l’immobilité du crayon empêchait la réalisation précise de formes complexes tels qu’un logo ou encore les lettres de l’alphabet.
+\\
+
+Nous allons donc avoir plusieurs tâches à réaliser :
+
+\begin{itemize}
+
+\item un mécanisme pour lever le crayon
+\item des algorithmes pour faire des formes
+\item un programme permettant d’écrire Polytech
+\item un programme permettant de réaliser le logo de Polytech
+
+\end{itemize}
+
+\chapter{Présentation des interfaces et des outils de travail}
+\section{Les cartes électroniques}
+Les robots utilisés lors de ce projet utilisent une carte Arduino UNO. Cette carte se compose d'un microprocesseur programmable avec des entrées et des sorties. Elle utilise un câble USB-B pour communiquer avec l'ordinateur. Toutes les cartes Arduino sont libres de droits cela la rend compatibles avec de nombreux composants électroniques. De plus cette plate-forme utilise un langage dérivé du C++ avec des bibliothèques complètes conçues par la communauté Arduino ou par les entreprises qui développent les capteurs, les moteurs ou tout autre composants compatibles Arduino. Les bibliothèques ont généralement des exemples pour pouvoir prendre en main les fonction et les méthodes qui la compose. La carte Arduino est associée à une carte Parallax facilitant les branchements de certains composants. On l'appelle plus communément un shield. Elle permet de redistribuer les connexions de l'Arduino et ajoute des connecteurs spécifiques pour l'utilisation de servo-moteurs. La carte se compose aussi d'une plaque de prototypage. Elle nous a permis de connecter des leds ou des interrupteurs pour tester certains circuit. Cette carte est très pratique mais il faut faire attention lorsque l'on utilise. En effet, les connexions avec l'Arduino sont plus facile avec ce dispositif cependant il faut vérifier ses branchements car on peut brancher plusieurs composants sur une même connexion et qu'ils rentrent en conflits. La carte dédouble les connexions, l'Arduino a par exemple une sortie numérotée 8 alors que la carte en a deux une à côté de la breadboard et une autre dans l'alignement de la sortie de l'Arduino. La carte triple même les connexions 10 à 13 car elles sont utilisées pour la commande des servo-moteurs.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.24]{image/carte_parallax.jpeg}
+    \caption{Photo de la carte Parallax vue de dessus}
+    \label{fig:Parallax}
+\end{figure}
+
+
+\section{Les servomoteurs}
+Un servomoteur est un moteur en courant continu qui peut se positionner à un angle précis. Pour le brancher il y a besoin de trois fils : un fil pour l'alimentation dans notre cas les moteurs utilisent du 5 volt, une masse pour fermer le circuit et un troisième fil qui permet de donner l'information de l'angle au servomoteur. Le troisième fil est branché sur une broche numérique spécifique de l'Arduino capable de modulé la tension en sortie. Ce sont des broches PWM\footnote{Power Width Modulation, Modulation de largeur d'Impulsions en français} elles sont notée par un tilde : $\sim$
+sur la carte.
+
+Pour pouvoir utiliser un servomoteur nous avons besoins d'importer une librairie. Nous utilisons la librairie Servo.h qui est installée en même temps que le logiciel de programmation Arduino.
+
+\subsection{Les servomoteurs des roues}
+
+Pour déplacer les robots nous utilisons un servomoteur pour chaque roue. Ce sont des servomoteurs modifiés qui permettent de réaliser une rotation complète. Les servomoteurs sont fixés directement sur le châssis du robot. Pour faire fonctionner le servomoteur on utilise la fonction writeMicroseconds(). Cette fonction a besoin d'un entier en paramètre et ce dernier définit le sens de rotation et la vitesse du moteur le paramètre est compris entre 1300 et 1700. Ces servomoteurs ont été calibrés pour avoir une vitesse nulle avec la constante 1500. Le moteur tourne dans le sens horaire lorsque l'on utilise la constante 1700 et dans le sens anti-horaire avec la constante 1300.  
+
+\subsection{Le servomoteur pour lever le crayon}
+
+\begin{figure}[h]
+\begin{minipage}{0.5\linewidth}
+    \center
+    \includegraphics[scale=0.4]{image/servomoteur_sur_le_mecanisme.JPG}
+    \caption{Moteur du mécanisme}
+    \label{fig:moteurMeca}
+\end{minipage}\hfill
+\begin{minipage}{0.45\linewidth}
+Pour lever le crayon notre professeur encadrant nous a fourni un petit servomoteur \cite{ref1} le SG92R. C'est un servomoteur classique, il ne peut pas réaliser une rotation complète. Nous avons utilisé un palonnier pour connecter le servomoteur au mécanisme. Pour commander ce moteur nous utilisons la méthode write() qui prend en paramètre un angle et va transmettre l'information au moteur pour qu'il change son orientation. 
+\end{minipage}
+\end{figure}
+
+\section{Les capteurs infrarouges}
+Les robots sont aussi dotés de deux capteurs infrarouges (le modèle Sharp GP2Y0A21YK) pour détecter les obstacles devant eux. Des cartons sont positionnés autour de la feuille pour éviter aux robots de sortir de la toile. Comme il y a plusieurs robots en même temps sur une même toile les capteurs infrarouges permettent aussi d'éviter les collisions. Les capteurs infrarouges sont disposés dans des pièces imprimées en 3D. Ces pièces ont été conçues pour éviter aux robots de s'accrocher, elles servent aussi de pare chocs. Les capteurs utilisent trois fils comme les servo-moteurs pour fonctionner : un fil pour l'alimentation en 5 volt et une masse. Tout comme le moteur le troisième fil permet de transmettre l'information cependant pour le moteur l'information provenait de l'Arduino pour commander le moteur. Ici c'est l'inverse: l'information provient du capteur et elle est récupérée par l'Arduino pour être traitée dans le programme. Ce fil est branché sur une entrée analogique de l'Arduino. Sur les robots le capteur gauche est branché sur le port A0 et le capteur droit sur le port A1
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{image/capteur_IR.jpeg}
+    \caption{Capteur infrarouge}
+    \label{fig:capteurIR}
+\end{figure}
+
+\chapter{Le mécanisme pour lever le crayon}
+
+\section{Idée de départ}
+Pour commencer nous avons fait un brainstorming où nous avons proposé différentes solutions pour lever le crayon. Cela nous a permis de relever les points importants que nous voulions de notre mécanisme final et d'établir un cahier des charges :
+
+\begin{itemize}
+    \item Utiliser la forme de l'ancien porte crayon car le modèle du porte crayon a été validé les années précédentes. 
+    \item Le dispositif doit pouvoir se fixer à l'emplacement de l'ancien porte crayon.
+    \item Le mécanisme doit avoir deux positions. Une position haute pour ne pas écrire sur la feuille et une position basse où le crayon est en contact avec la feuille.
+    \item La structure du système doit contenir peu de pièces pour faciliter l'impression car il faut l'imprimer en quatre exemplaires pour que chaque robot puisse avoir cette fonctionnalité. 
+    \item Réduire au maximum les frottements du dispositif car nous avons un petit servomoteur.
+    \item Limiter le poids du mécanisme afin que le robot soit stable.
+\end{itemize}
+
+\begin{figure}[h]
+\begin{minipage}{0.6\linewidth}
+    \center
+   \includegraphics[scale=0.5]{image/maquette_lego1.JPG}
+\end{minipage}\hfill
+\begin{minipage}{0.38\linewidth}
+    \center
+    \includegraphics[height=7.25cm]{image/maquette_lego2.jpg}
+\end{minipage}
+\label{fig:lego}
+\caption{Maquettes Lego}
+\end{figure}
+
+Nous avons choisi d’utiliser un dispositif qui ressemble à un parallélogramme \footnote{la forme est visible si on regarde le mécanisme de profil}. Cela nous permet de lever le crayon tout en restant perpendiculaire au sol. Ce système nous permet aussi de modifier le nombre de bras qu'il comporte et se compose de pièces plutôt simples à dessiner. De plus, cet agencement implique peu de frottements car les pièces sont en contacts sur de petites surfaces.
+
+À l’inverse le mécanisme de droite qui utilise une crémaillère est légèrement plus complexe ce qui le rend moins intéressant que le dispositif précédent. Son principal défaut est que beaucoup de frottements peuvent survenir entre le châssis et la crémaillère et l’impression doit être très précise pour que cela fonctionne correctement. Cependant il possède un avantage par rapport au premier dispositif: lorsque le crayon est levé il n’est pas avancé et se déplace suivant un seul axe. Cet agencement aurait été beaucoup plus adapté si le crayon était placé au centre du robot et qu'il devait descendre dans un trou au milieu du châssis.
+
+Les maquettes en Lego ont été très utiles au début du projet. Elles nous ont permis de communiquer plus facilement nos idées et de mieux visualiser la direction que nous prenions. Elles ont aussi donné un aperçu des pièces que nous devions modéliser ce qui a facilité cette première étape du projet.
+
+\section{Modélisation sur Catia}
+
+La modélisation des pièces est une partie importante du projet. Les années précédentes les groupes apportaient des modifications au pièces déjà modélisées c'est pourquoi, pour gagner du temps, ils réutilisaient les anciens fichiers 3D et donc devaient reprendre le logiciel de CAO\footnote{Conception Assitée par Ordinateur} utilisé pour le fichier. Les anciennes pièces étaient dessinées avec Google Sketch up. Cependant comme nous créons les fichiers en partant de zéro nous n'avons pas la contrainte d'utiliser Google Sketch up et nous pouvons choisir un autre logiciel à la place. Grâce à l'option de mécanique du semestre 3 nous avons eu une initiation au logiciel Catia V5. C'est un logiciel de CAO très complet qui permet de modéliser des pièces puis de les assembler. Catia s'est donc avérée être une option viable pour le projet, nous avons utiliser la version V5 R21.
+\\
+
+\begin{figure}[h]
+\begin{minipage}{0.55\linewidth}
+Catia est un logiciel avec de nombreuses fonctionnalités qui est utilisé dans de nombreux secteurs comme par exemple l'aéronautique. Nous allons succinctement expliquer son interface utilisateur. Pour créer une pièce on utilise un fichier avec l'extension .CATPart, on obtient alors une fenêtre vide. Nous allons modéliser la pièce au centre de cette fenêtre. Tout autour on peut apercevoir des barres d'outils que l'on peut personnaliser en les déplaçant et en ajoutant ou en supprimant des boutons en fonction des besoins. Une partie de la barre du bas permet de modifier l'angle de vue sur la pièce, sur le côté droit on trouve les principaux boutons pour créer des volumes qui vont constituer la pièce. À gauche on distingue l'arborescence de la pièce, elle montre les différentes fonctions utilisées pour la conception de la pièce, tout ce qui la compose : les mesures, les formes géométriques... C'est un outil indispensable pour modéliser sur Catia.
+    
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+    \center
+        
+    \includegraphics[scale=0.25]{image/Fenetre_part_Catia.jpg}
+    \caption{Fenêtre du logiciel Catia V5 R21}
+    \label{fig:my_label}
+\end{minipage}
+\end{figure}
+
+Pour bien modéliser une pièce il faut d'abord réfléchir à la forme générale de la pièce et aux différentes symétries qui la compose pour obtenir une arborescence lisible afin de modifier la pièce par la suite. Cette réflexion est très importante sur des pièces complexes telle que la pièce fixé au robot qui supporte le moteur. 
+
+Pour modéliser un volume avec ce logiciel on crée d'abord une esquisse dans un plan puis on lui applique une fonction 3D. Par exemple dans le cas du bras on a créé une esquisse du côté de la pièce avec les troues pour les boulons. Pour avoir une esquisse bien définie\footnote{lorsque c'est le cas l'esquisse devient verte} on doit la contraindre avec des côtes, des coïncidences d'axes ou des tangences entre les éléments qui la compose.
+
+%photo esquisse
+
+%paragraphe extrusion, poche...
+
+%photo extrusion
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.22]{image/brasCatia.jpeg}
+    \caption{fenêtre Catia avec le bras du mécanisme}
+    \label{fig:my_label}
+\end{figure}
+
+\section{Prototypes}
+
+
+
+\section{Modèle final}
+
+\section{Programmation pour lever le crayon}
+
+
+\chapter{Présentation des algorithmes }
+
+\section{Programmation pour les toiles}
+
+
+
+\section{Programmation pour les formes et lettres de l'alphabet}
+
+
+
+\chapter{Problèmes rencontrés}
+
+\section{L'alimentation}
+
+Lors de l’utilisation des robots, nous avons été confrontés à un problème récurrent: l’alimentation. En effet, chaque robot doit avoir 5 piles bien chargées pour pouvoir fonctionner. Il suffit d’une pile à un niveau un peu plus bas que les autres pour le robot ne marche plus correctement. Cette défaillance de piles peut même parfois conduire à des tracés parasites (des petits arcs de cercle successifs). C’est pourquoi nous avons dû les changer régulièrement lors de nos réalisations. De plus, nous avons observé une différence de tracé lorsque les piles sont chargés au maximum et lorsqu’elles le sont un peu moins. Ainsi, nos réglages dans le programme pour écrire Polytech se sont avérés être légèrement différents en fonction de la charge des piles.
+
+
+\section{Interférence entre les pins}
+
+
+
+--------------------------------------------------------------------------------
+\chapter*{Conclusion}
+\addcontentsline{toc}{chapter}{\numberline{}Conclusion}
+\markboth{Conclusion}{}
+\label{sec:conclusion}
+
+
+%--------------------------------------------------------------------------------
+%exemple de bibliographie
+\begin{thebibliography}{99}
+\label{sec:biblio}
+
+\bibitem{ref1}  Pierre Gaucher et Nicolas Monmarché. \textit{Initiation à la robotique mobile PEIP, mise en œuvre matérielle et logicielle}. Première version novembre 2013.
+
+\bibitem{ref2} Scott Fitzgerald et Michael Shiloh \textit{Le livre de projets Arduino}. Version de décembre 2014
+
+\bibitem{ref3} Erik Bartmann [adapté de l'allemand par Danielle Lafarge et Patrick Chantereau]. \textit{Le grand livre d'Arduino}. 2e édition. Éditions Eyrolles. Version de 2015
+
+\end{thebibliography}
+
+
+%--------------------------------------------------------------------------------
+%si on donne des annexes :
+\appendix
+\addcontentsline{toc}{part}{\numberline{}Annexes}
+
+%-----------------------------------------------------------------------------ds ---
+
+\chapter{Liens utiles\label{sec:liens_utiles}}
+Voici une petite liste d'url intéressantes au sujet de ce projet :
+
+\begin{itemize}
+\item \url{www.polytech.univ-tours.fr}
+\item \url{https://www.carnetdumaker.net/articles/controler-un-servomoteur-avec-une-carte-arduino-genuino/}
+\item \url{https://arduino.education/?page_id=15}
+\item \url{www.polytech.univ-tours.fr}
+
+\end{itemize}
+
+
+%--------------------------------------------------------------------------------
+
+\chapter{Nos réalisations\label{sec:nos_realisations}}
+Voici quelques unes de nos réalisations :
+
+%--------------------------------------------------------------------------------
+
+\chapter{Fiche de suivi de projet PeiP\label{sec:fiche_suivi}}
+
+
+\CR{18/01/2019}{Lors de cette première séance, nous avons tout d'abord rassemblé le matériel nécessaire pour le démarrage de notre projet. Nous avons ensuite mis en marche les robots et testé le capteur infrarouge. Dans la majeure partie de cette séance, nous avons étudié l'implémentation de notre levé de crayon. Nous avions avant cette séance réfléchi aux mécanismes pouvant être mis en place et nous avions fait 2 maquettes à partir de Légos. Nous avons étudié la forme de la pièce que nous allons modéliser en 3D afin d'y installer ce mécanisme. Nous avons donc dans un premier temps schématisé la pièce puis dans un second temps, commencé sa modélisation sur Catia.
+
+Objectifs de la prochaine séance :
+
+- Terminer le premier modèle de la pièce sur Catia
+
+- Tester les interactions des robots entre eux}
+
+\CR{25/01/2019}{Lors de cette deuxième séance, nous avons terminé notre premier prototype de la pièce principale sur Catia. Nous avons également modélisé une seconde pièce de notre mécanisme pour lever le crayon sur Catia.
+Nous avons réfléchi à l'agencement des vis et du mécanisme avec notre moteur afin d'avoir l'espace nécessaire pour le levé de crayon et de l'amplitude pour son mouvement.
+De plus, nous avons réalisé des tests avec différents robots simultanément afin de vérifier si tous les robots étaient fonctionnels.
+
+Enfin, nous avons fait la formation pour utiliser une imprimante 3D et ainsi d'être apte à utiliser les imprimantes du DI et du PLUG and FAB de manière autonome. Cependant, nous n'avons pas encore l'accès à la salle d'imprimante 3D du DI et nous ne savons pas si il y a toujours des moniteurs avec qui nous pourrions collaborer.
+
+Objectifs de la prochaine séance :
+
+- imprimer nos pièces 3D
+
+- programmer le moteur pas à pas
+}
+
+\CR{01/02/2019}{Lors de cette troisième séance, nous avons réalisé et testé un programme pour faire fonctionner le moteur pas à pas. Nous avons également terminé l'ensemble de nos pièces 3D sur Catia et réalisé un assemblage. Cependant, nous n'avons pas pu lancer leur impression car nous n'avons pas accès aux imprimantes 3D du DI et les imprimantes 3D du PLUG and FAB étaient déjà en cours d'impression.
+
+Objectifs de la prochaine séance :
+
+- imprimer les pièces 3D
+
+- tester le premier prototype}
+
+\CR{08/02/2019}{Lors de cette quatrième séance, nous avons testé notre premier prototype et effectué des ajustements  sur les pièces (utilisation d'une perceuse et ponçage des pièces). Lors de notre test, nous nous sommes aperçu qu'une des pièces de notre prototype était à modifier. D'une part en raison de l'alignement du servomoteur avec l'axe pour faire tourner le mécanisme. D'autre part, dans l'ancien modèle un élément avait été enlevé (la boule noire en dessous) et la stabilité du robot était maintenue avec le crayon fixe. Or, avec le lever de crayon cette stabilité ne sera donc plus constamment maintenue. C'est pourquoi il faut modifier l'une des pièces afin que le boule noire puisse être remise sur son support et ainsi de redonner une stabilité constante au robot.
+
+Objectifs de la prochaine séance :
+
+- réaliser et imprimer la nouvelle pièce 3D
+
+- assembler ce nouveau prototype (nous aurions d'ailleurs besoin de vis)}
+
+\CR{15/02/2019}{Lors de cette cinquième séance, nous avons récupéré les nouvelles pièces 3D que nous avons imprimé avec comme amélioration un espace sur notre plaque afin de pouvoir placer la boule noire qui assure la stabilité du robot et l'ajustement au niveau de l'axe de notre servomoteur. De plus, nous avons aussi imprimé de nouvelles barres plus petites (3,5cm à la place de 6cm) afin de réduire le poids de notre système sur le servomoteur et ainsi de rendre le mouvement plus fluide.
+
+Nous avons donc implémenté le mécanisme en assemblant les pièces 3D et en les fixant sur l'un des robots. Nous avons également réalisé un premier programme qui nous a permis de le faire marcher. Nous avons cependant modifié notre modèle de départ en ne mettant que 3 barres à la place de 4 dans notre mouvement afin de le fluidifier. Nous avons obtenu un résultat très satisfaisant bien que quelques réglages seront encore nécessaires afin d'avoir une meilleure précision du mouvement pour chacun des crayons.
+
+Enfin, un problème s'est posé au niveau de notre pièce. En effet, avec les barres plus courtes le câble permettant de relier la carte Arduino à l'ordinateur ne peut pas passer. Il faut donc démonter une partie de notre mécanisme pour pouvoir téléverser un programme dans notre carte. C'est pourquoi nous allons modifier l'autre pièce afin de pouvoir faire passer la câble. De plus, nos 2 premières étant des prototypes nous avions fait plusieurs supports afin de faire plusieurs tests de placements des barres nous allons par la même occasion enlever celles qui ne servent plus.
+
+Objectifs de la prochaine séance :
+
+- terminer la modélisation des nouvelles pièces 3D
+
+- effectuer des réglages pour avoir des mouvements  du crayon plus précis
+
+- implémenter des boutons sélecteurs}
+
+\CR{01/03/2019}{Lors de cette sixième séance, nous avons implémenté un sélecteur afin de pouvoir mettre notre crayon en position basse ou en position haute lors du démarrage. Nous avons également réalisé tous les montages du mécanisme pour lever le crayon sur les cartes Parallax et Arduino du robot. 
+
+Nous avons également crée un programme plus précis pour lever et baisser le crayon et nous avons aussi effectué un premier programme permettant d'utiliser les capteurs infrarouges, les servomoteurs de déplacement ainsi que le servomoteur du levé de crayon. Nous avons ensuite testé ce programme.
+
+Nous avons également terminé la modélisation des 2 nouvelles pièces 3D sur Catia (allégement des plaques, suppression des accroches en trop, place pour le câble USB, intégration du porte crayon sur la deuxième plaque...)
+
+De plus, dans le cadre des Journées Portes Ouvertes du 2 mars nous avons préparé une démonstration de note projet et nous avons récupéré et installé le matériel nécessaire à notre présentation.
+
+Objectifs de la prochaine séance :
+
+- imprimer ces nouvelles pièces et les tester
+
+- Créer le code pour couper les servomoteurs de déplacement lors de l'utilisation du bouton poussoir}
+
+\CR{08/03/2019}{Lors de cette septième séance, nous avons récupéré les nouvelles pièces 3D et nous les avons montées sur un deuxième robot. Après test, nous pensons que le mécanisme actuel sera celui final, nous allons donc le faire valider à notre professeur encadrant. 
+Nous avons également remis les billes sur tous les robots et paramétré les moteurs.
+
+Objectifs de la prochaine séance :
+
+-  imprimer et récupérer les pièces validées pour le deuxième robot
+
+- améliorer la structure du robot
+
+- modification des algorithmes de déplacements des robots}
+
+\CR{15/03/2019}{Lors de cette huitième séance, nous avons réalisé plusieurs programmes dans le but de pouvoir faire aux robots des tracés rectangulaires. Nous avons aussi soudé un deuxième sélecteur et nous l'avons implémenté sur un deuxième robot. 
+
+Objectifs de la prochaine séance :
+
+- réaliser un programme complet permettant de faire des tracés rectangulaires
+
+- faire des tests de ce programme avec 2 de nos robots}
+
+\CR{22/03/2019}{Lors de cette neuvième séance, nous avons tout d'abord récupéré les pièces 3D de la dernière version afin d'avoir 2 robots parfaitement fonctionnels et de pouvoir ainsi téléverser les différents programmes réalisés sans avoir besoin de démonter une partie de notre mécanisme.
+Ensuite, nous avons faits des tests pour faire un programme réalisant un rectangle en pivotant à gauche ou à droite. Nous avons avons pu tester ce programme sur les 2 robots avec succès. Nous avons également implémenté ces réglages dans le programme permettant aux robots d’interagir entre eux et de dessiner sur une toile. Nous avons d'ailleurs pu tester ce programme en réalisant une première toile.
+
+Objectifs de la prochaine séance :
+
+- réaliser de nouvelles toiles
+
+- réaliser des dessins choisis aux robots (cercle, carré, lettres de l'alphabet...)
+
+- assembler les anciens prototypes pour le rapport et la soutenance}
+
+\CR{29/03/2019}{Lors de cette dixième séance, nous avons réalisé un programme permettant au robot d'écrire Polytech. Pour cela, nous avons réalisé un algorithme pour chaque lettre comprenant la liaison entre ce dernières. Nous avons également fait dessiner le logo Polytech au robot. Enfin, nous avons monté les anciens prototypes pour notre rapport de projet et notre soutenance orale.
+
+Objectifs de la prochaine séance:
+
+- améliorer l'écriture de Polytech
+
+- réaliser une autre toile
+
+- avancer notre rapport de projet}
+\CR{05/04/2019}{Lors de cette dernière séance, nous avons effectué encore quelques réglages pour l'écriture de Polytech et nous l'avons filmé. De plus, nous avons réalisé une toile avec différentes couleurs. Nous avons également pris des photos pour notre rapport de projet ainsi que la soutenance.}
+
+
+
+
+%--------------------------------------------------------------------------------
+%index : attention, le fichier dindex .ind doit avoir le même nom que le fichier .tex
+%\printindex
+
+%--------------------------------------------------------------------------------
+
+
+%--------------------------------------------------------------------------------
+%page du dos de couverture :
+
+\resume{Integer lorem purus, rutrum quis lacinia in, egestas ut urna. Donec elementum mi id nisi blandit quis ultricies risus semper. Nulla congue tincidunt diam, id tincidunt mauris euismod nec. Nullam faucibus dapibus eros, at consequat odio rutrum quis. Curabitur nisl sem, suscipit in mattis eu, varius a mauris. Ut a augue ac augue fringilla egestas. Etiam non augue felis, in convallis nisi. Maecenas id urna ut justo tempor laoreet in eu ligula. Duis non erat vitae eros rhoncus rutrum sit amet at lorem. Ut tempor cursus ligula, eu bibendum ligula adipiscing eu. Fusce feugiat aliquam dolor, nec interdum nisl convallis vitae.}
+
+\motcles{???, ????, ?????, ?????????, ??, ????}
+
+\abstract{Integer lorem purus, rutrum quis lacinia in, egestas ut urna. Donec elementum mi id nisi blandit quis ultricies risus semper. Nulla congue tincidunt diam, id tincidunt mauris euismod nec. Nullam faucibus dapibus eros, at consequat odio rutrum quis. Curabitur nisl sem, suscipit in mattis eu, varius a mauris. Ut a augue ac augue fringilla egestas. Etiam non augue felis, in convallis nisi. Maecenas id urna ut justo tempor laoreet in eu ligula. Duis non erat vitae eros rhoncus rutrum sit amet at lorem. Ut tempor cursus ligula, eu bibendum ligula adipiscing eu. Fusce feugiat aliquam dolor, nec interdum nisl convallis vitae.}
+
+\keywords{???, ????, ?????, ?????????, ??, ????}
+
+
+\makedernierepage
+
+
+\end{document}
+
+%%FIN du fichier

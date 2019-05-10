@@ -1,0 +1,91 @@
+image à gauche texte à droite :
+
+\begin{figure}
+\begin{minipage}{0.55\linewidth}
+    \center
+    \includegraphics[scale=1]%{image/"le nom de l'image".jpg}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{minipage}\hfill
+\begin{minipage}{0.4\linewidth}
+
+
+\end{minipage}
+\end{figure}
+
+image à droite et texte à gauche :
+
+\begin{figure}
+\begin{minipage}{0.4\linewidth}
+
+
+\end{minipage}\hfill
+\begin{minipage}{0.55\linewidth}
+    \center
+    \includegraphics[scale=1]%{image/"le nom de l'image".jpg}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{minipage}
+\end{figure}
+
+double image : 
+
+\begin{figure}
+\begin{minipage}{0.4\linewidth}
+    \center
+    \includegraphics[scale=1]%{image/"le nom de l'image".jpg}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{minipage}\hfill
+
+\begin{minipage}{0.55\linewidth}
+    \center
+    \includegraphics[scale=1]%{image/"le nom de l'image".jpg}
+    \caption{Caption}
+    \label{fig:my_label}
+\end{minipage}
+\end{figure}
+
+image seule et centrée
+
+argument d'instance: h, H, !ht
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[scale=1]{image/robot_version1.jpg}
+\caption{Version de 2014}
+\end{center}
+\end{figure}
+
+
+double image version 2
+
+taille à adapter suivant les images et légendes 
+
+\begin{figure}[!ht]
+\centering
+\begin{minipage}[t]{8cm}
+    \centering
+    \includegraphics[scale=1.1]{image/robot_version1.jpg}
+    \caption{Version de 2014}
+\end{minipage}
+\begin{minipage}[t]{8cm}
+\centering
+    \includegraphics[scale=0.8]{image/robot_version1_premiers_capteurs_infrarouges.JPG}
+    \caption{Premiers capteurs infrarouges}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.48}
+    \centering
+    \includegraphics[scale=0.5]{image/}
+    \caption{}
+\end{minipage}
+\begin{minipage}{0.48}
+\centering
+    \includegraphics[scale=]{image/}
+    \caption{}
+    \end{minipage}
+\end{figure}
